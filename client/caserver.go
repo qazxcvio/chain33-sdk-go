@@ -1,17 +1,17 @@
 package client
 
 import (
-	"github.com/33cn/chain33-sdk-go/crypto/secp256r1"
-	"github.com/33cn/chain33-sdk-go/types"
+	"github.com/qazxcvio/chain33-sdk-go/crypto/secp256r1"
+	"github.com/qazxcvio/chain33-sdk-go/types"
 )
 
 // 注册用户
 func (client *JSONClient) CertUserRegister(userName, identity, userPub, admin string, adminKey []byte) (bool, error) {
 	send := &types.ReqRegisterUser{
-		Name:                 userName,
-		Identity:             identity,
-		PubKey:               userPub,
-		Admin:                admin,
+		Name:     userName,
+		Identity: identity,
+		PubKey:   userPub,
+		Admin:    admin,
 	}
 	msg := types.Encode(send)
 	sign, err := secp256r1.Sign(msg, adminKey)
@@ -32,8 +32,8 @@ func (client *JSONClient) CertUserRegister(userName, identity, userPub, admin st
 // 注销用户
 func (client *JSONClient) CertUserRevoke(identity, admin string, adminKey []byte) (bool, error) {
 	send := &types.ReqRevokeUser{
-		Identity:             identity,
-		Admin:                admin,
+		Identity: identity,
+		Admin:    admin,
 	}
 
 	msg := types.Encode(send)
@@ -55,8 +55,8 @@ func (client *JSONClient) CertUserRevoke(identity, admin string, adminKey []byte
 // 申请证书
 func (client *JSONClient) CertEnroll(identity, admin string, adminKey []byte) (*types.RepEnroll, error) {
 	send := &types.ReqEnroll{
-		Identity:             identity,
-		Admin:                admin,
+		Identity: identity,
+		Admin:    admin,
 	}
 
 	msg := types.Encode(send)
@@ -78,9 +78,9 @@ func (client *JSONClient) CertEnroll(identity, admin string, adminKey []byte) (*
 // 注销证书
 func (client *JSONClient) CertRevoke(serial, identity, admin string, adminKey []byte) (bool, error) {
 	send := &types.ReqRevokeCert{
-		Serial:               serial,
-		Identity:             identity,
-		Admin:                admin,
+		Serial:   serial,
+		Identity: identity,
+		Admin:    admin,
 	}
 
 	msg := types.Encode(send)
@@ -102,7 +102,7 @@ func (client *JSONClient) CertRevoke(serial, identity, admin string, adminKey []
 // 查询证书信息
 func (client *JSONClient) CertGetCertInfo(serial string, userKey []byte) (*types.RepGetCertInfo, error) {
 	send := &types.ReqGetCertInfo{
-		Sn:                   serial,
+		Sn: serial,
 	}
 
 	msg := types.Encode(send)
@@ -122,9 +122,9 @@ func (client *JSONClient) CertGetCertInfo(serial string, userKey []byte) (*types
 }
 
 // 查询用户信息
-func (client *JSONClient) CertGetUserInfo(identity string,  userKey []byte) (*types.RepGetUserInfo, error) {
+func (client *JSONClient) CertGetUserInfo(identity string, userKey []byte) (*types.RepGetUserInfo, error) {
 	send := &types.ReqGetUserInfo{
-		Identity:                   identity,
+		Identity: identity,
 	}
 
 	msg := types.Encode(send)
@@ -146,8 +146,8 @@ func (client *JSONClient) CertGetUserInfo(identity string,  userKey []byte) (*ty
 // 添加证书管理员
 func (client *JSONClient) CertAdminRegister(userName, userPub string, adminKey []byte) (bool, error) {
 	send := &types.ReqAdmin{
-		Name:                 userName,
-		PubKey:               userPub,
+		Name:   userName,
+		PubKey: userPub,
 	}
 
 	msg := types.Encode(send)
@@ -169,8 +169,8 @@ func (client *JSONClient) CertAdminRegister(userName, userPub string, adminKey [
 // 删除证书管理员
 func (client *JSONClient) CertAdminRemove(userName, userPub string, adminKey []byte) (bool, error) {
 	send := &types.ReqAdmin{
-		Name:                 userName,
-		PubKey:               userPub,
+		Name:   userName,
+		PubKey: userPub,
 	}
 
 	msg := types.Encode(send)
@@ -202,5 +202,3 @@ func (client *JSONClient) CertValidate(serials []string) ([]string, error) {
 
 	return detail, nil
 }
-
-

@@ -1,4 +1,4 @@
-module github.com/33cn/chain33-sdk-go
+module github.com/qazxcvio/chain33-sdk-go
 
 go 1.12
 

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	sdk "github.com/33cn/chain33-sdk-go"
-	"github.com/33cn/chain33-sdk-go/types"
+	sdk "github.com/qazxcvio/chain33-sdk-go"
+	"github.com/qazxcvio/chain33-sdk-go/types"
 	"github.com/stretchr/testify/assert"
 )
 
